@@ -9,11 +9,46 @@ const io = new Server(server);
 app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, 'public')))
 
-io.on('connection', (socket) => {
-    socket.on('chat message', (msg) => {
-      io.emit('chat message', msg);
-    });
+const users = {};
+let onlineUsersCount = 0;
+
+io.on('connection', socket => {
+  socket.on('new-user-join', name => {
+      if (name && name.trim().length > 0) {
+          users[socket.id] = name;
+          onlineUsersCount++;
+          io.emit("update-user-count", onlineUsersCount);
+          socket.broadcast.emit("user-joined", name);
+      } else {
+          socket.emit('name-error', 'Name is required');
+      }
   });
+
+  socket.on('send', message => {
+      const name = users[socket.id];
+      if (name) {
+          socket.broadcast.emit("receive", { message: message, name: name });
+      }
+  });
+
+  socket.on('disconnect', () => {
+    const name = users[socket.id];
+    if (name) {
+        socket.broadcast.emit("user-left", name);
+        delete users[socket.id];
+        onlineUsersCount--;
+        io.emit("update-user-count", onlineUsersCount);
+    }
+});
+
+  socket.on('disconnect', () => {
+      const name = users[socket.id];
+      if (name) {
+          socket.broadcast.emit("user-left", name);
+          delete users[socket.id];
+      }
+  });
+});
 
 app.get("/", (req, res) => {
     res.render("index")

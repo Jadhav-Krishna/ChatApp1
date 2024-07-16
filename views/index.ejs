@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Chat APP</title>
+  <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon">
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body {
@@ -14,25 +15,30 @@
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     }
     .message-bubble-sent {
-        background: linear-gradient(135deg, #43cea2 0%, #185a9d 100%);
+        background: linear-gradient(135deg, #f63cf0 0%, #480056 100%);
+    }
+    ::-webkit-scrollbar{
+        display: none;
+    }
+    ::selection{
+        color: red;
+        font-weight: 900;
     }
 </style>
 </head>
 <body class="bg-gray-900 text-gray-300 font-sans h-screen flex items-center justify-center">
 
   <div class="flex flex-col w-full max-w-2xl h-4/5 border border-gray-700 rounded-lg overflow-hidden shadow-lg">
-    <div class="p-4 border-b border-gray-700 bg-gray-800">
-        <h2 class="text-xl font-semibold text-white">Chat with Crishna</h2>
+    <div class="p-4 flex gap-3 items-center border-b border-gray-700 bg-gray-800">
+        <h2 class="text-xl font-semibold text-white">VibeVox</h2>
+        <h6 id="onlineUser" class="flex relative text-sm items-center gap-1"><div class="h-2.5 w-2.5 animate-ping rounded-full bg-green-500"></div><div class="h-2 w-2 left-px absolute rounded-full bg-green-500"></div></h6>
     </div>
     <div id="message" class="flex-1 p-4 overflow-y-auto space-y-4 bg-gray-900">
-        <div class="flex items-start">
-            <div class="message-bubble p-4 rounded-lg text-white max-w-xs">
-                <p>Hello, how are you?</p>
-            </div>
-        </div>
+        
     </div>
+    
     <div class="p-4 border-t border-gray-700 bg-gray-800">
-        <form class="flex items-center">
+        <form id="message-form" class="flex items-center">
             <input type="text" id="input" autocomplete="off" class="flex-1 outline-none p-2 bg-gray-700 border border-gray-600 rounded-lg text-white" placeholder="Type a message...">
             <button type="button" id="btn" class="ml-2 bg-blue-500 text-white p-2 rounded-lg">Send</button>
         </form>
