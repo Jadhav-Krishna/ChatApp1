@@ -29,9 +29,12 @@
 <body class="bg-gray-900 text-gray-300 font-sans h-screen flex items-center justify-center">
 
   <div class="flex flex-col w-full max-w-2xl h-4/5 border border-gray-700 rounded-lg overflow-hidden shadow-lg">
-    <div class="p-4 flex gap-3 items-center border-b border-gray-700 bg-gray-800">
-        <h2 class="text-xl font-semibold text-white">VibeVox</h2>
-        <h6 id="onlineUser" class="flex relative text-sm items-center gap-1"><div class="h-2.5 w-2.5 animate-ping rounded-full bg-green-500"></div><div class="h-2 w-2 left-px absolute rounded-full bg-green-500"></div></h6>
+    <div class="p-3 h-20 flex gap-3 items-center border-b border-gray-700 bg-gray-800">
+        <div>
+            <h2 class="text-xl font-semibold text-white">VibeVox</h2>
+            <p id="typing" class="typing text-[11px] text-green-500"></p>
+        </div>
+        <div class="flex relative text-sm items-center gap-1"><div class="h-2.5 w-2.5 animate-ping rounded-full bg-green-500"></div><div class="h-2 w-2 left-px absolute rounded-full bg-green-500"></div><h6 id="onlineUser" class="text-sm font-semibold"></h6></div>
     </div>
     <div id="message" class="flex-1 p-4 overflow-y-auto space-y-4 bg-gray-900">
         
